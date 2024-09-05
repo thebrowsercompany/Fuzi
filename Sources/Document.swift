@@ -32,7 +32,8 @@ open class XMLDocument {
   
   /// The string encoding for the document. This is utf8 if no encoding is set, or it cannot be calculated.
   open fileprivate(set) lazy var encoding: String.Encoding = {
-    guard let encoding = String.Encoding(ianaCharsetName: ^-^self.cDocument.pointee.encoding) else {
+    guard let encodingStr = ^-^self.cDocument.pointee.encoding,
+          let encoding = String.Encoding(ianaCharsetName: encodingStr) else {
       return String.Encoding.utf8
     }
     return encoding

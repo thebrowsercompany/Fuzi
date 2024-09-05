@@ -147,7 +147,7 @@ internal func cXMLNode(_ node: xmlNodePtr?, matchesTag tag: XMLCharsComparable, 
   return matches
 }
 
-extension String.Encoding {
+internal extension String.Encoding {
   // CoreFoundation is not available on Windows, so mimic the functionality
   // of CFStringConvertIANACharSetNameToEncoding() and
   // CFStringConvertEncodingToNSStringEncoding() here. See the IANA charset
