@@ -69,7 +69,11 @@ extension XMLNodeType {
   /// XInclude End
   public static var XIncludeEnd: xmlElementType   { return XML_XINCLUDE_END }
   /// DocbDocument
-  public static var DocbDocument: xmlElementType  { return XML_DOCB_DOCUMENT_NODE }
+  public static var DocbDocument: xmlElementType  { 
+    // The DOCB type is not part of the enum in libxml2, it's a #define. On 
+    // Windows it gets imported as an incompatible type, so explicitly cast it.
+    return xmlElementType(XML_DOCB_DOCUMENT_NODE) 
+  }
 }
 
 infix operator ~=
@@ -97,7 +101,8 @@ open class XMLNode {
   
   /// The element's line number.
   open fileprivate(set) lazy var lineNumber: Int = {
-    return xmlGetLineNo(self.cNode)
+    // On Windows `long` is a 32 bit value so explicitly cast to Int.
+    return Int(xmlGetLineNo(self.cNode))
   }()
   
   // MARK: - Accessing Parent and Sibling Elements
