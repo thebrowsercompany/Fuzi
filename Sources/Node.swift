@@ -69,10 +69,14 @@ extension XMLNodeType {
   /// XInclude End
   public static var XIncludeEnd: xmlElementType   { return XML_XINCLUDE_END }
   /// DocbDocument
-  public static var DocbDocument: xmlElementType  { 
+  public static var DocbDocument: xmlElementType  {
+    #if os(Windows)
     // The DOCB type is not part of the enum in libxml2, it's a #define. On 
     // Windows it gets imported as an incompatible type, so explicitly cast it.
     return xmlElementType(XML_DOCB_DOCUMENT_NODE) 
+    #else
+    return XML_DOCB_DOCUMENT_NODE
+    #endif
   }
 }
 
