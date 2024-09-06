@@ -124,7 +124,9 @@ open class XMLNode {
   // MARK: - Accessing Contents
   /// Whether this is a HTML node
   open var isHTML: Bool {
-    return UInt32(self.cNode.pointee.doc.pointee.properties) & XML_DOC_HTML.rawValue == XML_DOC_HTML.rawValue
+    // On Windows the bitset is imported as an incompatible type, so explicitly cast it.
+    let xmlDocHtmlBit = UInt32(XML_DOC_HTML.rawValue)
+    return UInt32(self.cNode.pointee.doc.pointee.properties) & xmlDocHtmlBit == xmlDocHtmlBit
   }
 
   /// A string representation of the element's value.
