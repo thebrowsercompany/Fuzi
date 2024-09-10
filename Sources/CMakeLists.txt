@@ -7,5 +7,5 @@ add_library(Fuzi
   NodeSet.swift
   Queryable.swift)
 
-target_link_libraries(Fuzi PRIVATE
+target_link_libraries(Fuzi PUBLIC
   LibXml2)
