@@ -6,6 +6,7 @@ add_compile_definitions(_CRT_SECURE_NO_WARNINGS _CRT_NONSTDC_NO_WARNINGS)
 # Set libxml2 build options.
 set(LIBXML2_WITH_ICONV OFF)
 set(LIBXML2_WITH_PYTHON OFF)
+set(LIBXML2_WITH_TESTS OFF)
 set(BUILD_SHARED_LIBS ON)
 
 # Fetch and build libxml2.
